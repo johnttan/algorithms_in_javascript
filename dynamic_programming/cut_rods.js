@@ -78,6 +78,11 @@ function cut_rods_dp_with_tracking(prices, length){
     table[i] = max;
   }
   console.log(parents);
+  var n = length;
+  while(n > 0){
+    console.log('piece', parents[n]);
+    n -= parents[n];
+  }
   return table[length];
 }
 
