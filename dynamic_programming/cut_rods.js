@@ -11,8 +11,10 @@ function cut_rods(prices, length){
   return maxVal;
 }
 
-var res = cut_rods([0, 1, 5, 8, 9, 10, 17, 20, 24, 30], 4);
-console.log(res);
+var start = Date.now();
+var res = cut_rods([0, 1, 5, 8, 9, 10, 17, 20, 24, 30, 1, 2, 3, 4, 1, 2, 3, 2, 4, 15, 20, 14, 123, 123,123,1 , 32, 21, 14, 23, 14, 23, 41, 123, 4, 23], 25);
+var end = Date.now();
+console.log(res, end - start);
 
 function cut_rods_memoized(prices, length){
   var table = {};
@@ -24,11 +26,12 @@ function cut_rods_memoized(prices, length){
 
     for(var i=1;i<=length;i++){
       var subVal;
-      var key = (prices + " " + (length-i));
-      if(key in table){
+      var key = (String(length - i));
+      if(table[key] != undefined){
         subVal = table[key]
       }else{
         subVal = cut_rods(prices, length-i)
+        table[key] = subVal
       }
       maxVal = Math.max(maxVal, prices[i] + subVal)
     }
@@ -37,6 +40,7 @@ function cut_rods_memoized(prices, length){
   return cut_rods(prices, length);
 }
 
-
-var res = cut_rods_memoized([0, 1, 5, 8, 9, 10, 17, 20, 24, 30], 4);
-console.log(res);
+var start = Date.now();
+var res = cut_rods_memoized([0, 1, 5, 8, 9, 10, 17, 20, 24, 30, 1, 2, 3, 4, 1, 2, 3, 2, 4, 15, 20, 14, 123, 123,123,1 , 32, 21, 14, 23, 14, 23, 41, 123, 4, 23], 25);
+var end = Date.now();
+console.log(res, end - start);
