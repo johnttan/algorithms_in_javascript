@@ -63,3 +63,26 @@ var start = Date.now();
 var res = cut_rods_dp([0, 1, 5, 8, 9, 10, 17, 20, 24, 30, 1, 2, 3, 4, 1, 2, 3, 2, 4, 15, 20, 14, 123, 123,123,1 , 32, 21, 14, 23, 14, 23, 41, 123, 4, 23], 25);
 var end = Date.now();
 console.log(res, end - start);
+
+function cut_rods_dp_with_tracking(prices, length){
+  var table = [0];
+  var parents = [-1];
+  for(var i=1;i<=length;i++){
+    var max = Number.NEGATIVE_INFINITY;
+    for(var j=1;j<=i;j++){
+        if(max < prices[j] + table[i-j]){
+          max = prices[j] + table[i-j];
+          parents[j] = i-j;
+        }
+        max = Math.max(max, )
+    }
+    table[i] = max;
+  }
+  console.log(parents);
+  return table[length];
+}
+
+var start = Date.now();
+var res = cut_rods_dp([0, 1, 5, 8, 9, 10, 17, 20, 24, 30, 1, 2, 3, 4, 1, 2, 3, 2, 4, 15, 20, 14, 123, 123,123,1 , 32, 21, 14, 23, 14, 23, 41, 123, 4, 23], 25);
+var end = Date.now();
+console.log(res, end - start);
