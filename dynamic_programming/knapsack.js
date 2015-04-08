@@ -57,7 +57,7 @@ function knapsack_recursive_memoized(currentItem, weights, values, weightLeft, m
 
 var testWeights = [];
 var testValues = [];
-for(var i=0;i<20;i++){
+for(var i=0;i<50;i++){
   testWeights.push(Math.floor((Math.random() * Math.random() * 10 / Math.random())));
   testValues.push(Math.floor((Math.random() * Math.random() * 10 / Math.random())));
 }
