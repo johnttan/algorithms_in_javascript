@@ -72,9 +72,8 @@ function cut_rods_dp_with_tracking(prices, length){
     for(var j=1;j<=i;j++){
         if(max < prices[j] + table[i-j]){
           max = prices[j] + table[i-j];
-          parents[j] = i-j;
+          parents[i] = j;
         }
-        max = Math.max(max, )
     }
     table[i] = max;
   }
@@ -83,6 +82,6 @@ function cut_rods_dp_with_tracking(prices, length){
 }
 
 var start = Date.now();
-var res = cut_rods_dp([0, 1, 5, 8, 9, 10, 17, 20, 24, 30, 1, 2, 3, 4, 1, 2, 3, 2, 4, 15, 20, 14, 123, 123,123,1 , 32, 21, 14, 23, 14, 23, 41, 123, 4, 23], 25);
+var res = cut_rods_dp_with_tracking([0, 1, 5, 8, 9, 10, 17, 20, 24, 30, 1, 2, 3, 4, 1, 2, 3, 2, 4, 15, 20, 14, 123, 123,123,1 , 32, 21, 14, 23, 14, 23, 41, 123, 4, 23], 25);
 var end = Date.now();
 console.log(res, end - start);
