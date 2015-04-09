@@ -1,3 +1,4 @@
+// http://www.geeksforgeeks.org/dynamic-programming-set-10-0-1-knapsack-problem/
 var timing = function(name, func, args){
   var start = Date.now();
   var result = func.apply(null, args);
@@ -91,19 +92,20 @@ function knapsack_dp(weights, values, maxWeight){
   var k = values.length;
   var p = maxWeight;
   var items = [];
-  // while(parents[k]!== undefined && parents[k][p] !== undefined){
-  //   var current = parents[k][p];
-  //   if(current[2]){
-  //     items.push(k);
-  //   }
-  //   k = current[0];
-  //   p = current[1];
-  // }
-  // var maxBasedOnParents = 0;
-  // items.forEach(function(item){
-  //   maxBasedOnParents += values[item-1];
-  // })
-  // console.log(maxBasedOnParents);
+  while(parents[k]!== undefined && parents[k][p] !== undefined){
+    var current = parents[k][p];
+    if(current[2]){
+      items.push(k);
+    }
+    k = current[0];
+    p = current[1];
+  }
+  var maxBasedOnParents = 0;
+  items.forEach(function(item){
+    maxBasedOnParents += values[item-1];
+  })
+  console.log(maxBasedOnParents);
+  // console.log(items);
   return table[values.length][maxWeight];
 }
 

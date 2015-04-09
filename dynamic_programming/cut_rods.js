@@ -1,4 +1,5 @@
 // Recursive
+// http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
 function cut_rods(prices, length){
   if(length === 0){
     return 0;
