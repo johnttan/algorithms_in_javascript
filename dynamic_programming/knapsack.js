@@ -65,6 +65,7 @@ function knapsack_dp(weights, values, maxWeight){
       table[i][j] = 0;
     }
   }
+  var parents = [];
 
   for(var i=1;i<=values.length;i++){
     for(var j=0;j<=maxWeight;j++){
@@ -77,9 +78,32 @@ function knapsack_dp(weights, values, maxWeight){
         pickItem = table[i-1][j - weightOfItem] + values[i-1];
       }
       dontPickItem = table[i-1][j];
-      table[i][j] = Math.max(pickItem, dontPickItem)
+      parents[i] = parents[i] || [];
+      if(pickItem > dontPickItem){
+        table[i][j] = pickItem;
+        parents[i][j] = [i-1, j-weightOfItem, true];
+      }else{
+        table[i][j] = dontPickItem;
+        parents[i][j] = [i-1, j, false];
+      }
     }
   }
+  var k = values.length;
+  var p = maxWeight;
+  var items = [];
+  // while(parents[k]!== undefined && parents[k][p] !== undefined){
+  //   var current = parents[k][p];
+  //   if(current[2]){
+  //     items.push(k);
+  //   }
+  //   k = current[0];
+  //   p = current[1];
+  // }
+  // var maxBasedOnParents = 0;
+  // items.forEach(function(item){
+  //   maxBasedOnParents += values[item-1];
+  // })
+  // console.log(maxBasedOnParents);
   return table[values.length][maxWeight];
 }
 
@@ -91,4 +115,4 @@ for(var i=0;i<200;i++){
 }
 // timing("KNAPSACK_RECURSIVE", knapsack_recursive, [testValues.length-1, testWeights, testValues, 10])
 timing("KNAPSACK_RECURSIVE_MEMOIZED", knapsack_recursive_memoized, [testValues.length-1, testWeights, testValues, 1000, {}])
-timing("KNAPSACK_DP", knapsack_dp, [testWeights, testValues, 500])
+timing("KNAPSACK_DP", knapsack_dp, [testWeights, testValues, 1000])
